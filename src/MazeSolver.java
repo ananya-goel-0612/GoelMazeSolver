@@ -36,7 +36,7 @@ public class MazeSolver {
         MazeCell temp = maze.getEndCell();
 
         // While current cell isn't the beginning cell, add to path
-        while(temp != maze.getStartCell()){
+        while (temp != maze.getStartCell()) {
             solutionStack.add(temp);
             temp = temp.getParent();
         }
@@ -46,7 +46,7 @@ public class MazeSolver {
         int size = solutionStack.size();
 
         // Reverse order from end to start, to start to end
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             solutionList.add(solutionStack.pop());
         }
 
