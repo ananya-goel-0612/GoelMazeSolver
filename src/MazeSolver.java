@@ -28,29 +28,29 @@ public class MazeSolver {
      * @return An arraylist of MazeCells to visit in order
      */
     public ArrayList<MazeCell> getSolution() {
-        // Should be from start to end cells
-        ArrayList<MazeCell> solutionList = new ArrayList<MazeCell>();
-        Stack<MazeCell> solutionStack = new Stack<MazeCell>();
+        // Make a stack and push the parent cell of the endCell to the stack
+        // and continue pushing parentCells until it reaches the startCell
+        Stack<MazeCell> route = new Stack<MazeCell>();
 
-        // Create a temp MazeCell to keep track of the current cell in the path
-        MazeCell temp = maze.getEndCell();
+        MazeCell cell = maze.getEndCell();
+        MazeCell start = maze.getStartCell();
 
-        // While current cell isn't the beginning cell, add to path
-        while (temp != maze.getStartCell()) {
-            solutionStack.add(temp);
-            temp = temp.getParent();
+        while (cell != start) {
+            route.push(cell);
+            cell = cell.getParent();
         }
 
-        // Add start cell to path
-        solutionStack.add(maze.getStartCell());
-        int size = solutionStack.size();
+        route.push(start);
 
-        // Reverse order from end to start, to start to end
-        for (int i = 0; i < size; i++) {
-            solutionList.add(solutionStack.pop());
+        // Creating an ArrayList to return
+        ArrayList<MazeCell> solution = new ArrayList<MazeCell>();
+
+        // Traverse through the stack to add to the ArrayList in the correct order
+        while (!route.empty()) {
+            solution.add(route.pop());
         }
 
-        return solutionList;
+        return solution;
     }
 
     /**
@@ -58,9 +58,8 @@ public class MazeSolver {
      * @return An ArrayList of MazeCells in order from the start to end cell
      */
     public ArrayList<MazeCell> solveMazeDFS() {
-        // TODO: Use DFS to solve the maze
         // Explore the cells in the order: NORTH, EAST, SOUTH, WEST
-        return null;
+
     }
 
     /**
