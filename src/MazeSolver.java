@@ -28,11 +28,29 @@ public class MazeSolver {
      * @return An arraylist of MazeCells to visit in order
      */
     public ArrayList<MazeCell> getSolution() {
-        // TODO: Get the solution from the maze
         // Should be from start to end cells
-        Stack<MazeCell> solutions = new Stack<MazeCell>();
+        ArrayList<MazeCell> solutionList = new ArrayList<MazeCell>();
+        Stack<MazeCell> solutionStack = new Stack<MazeCell>();
 
-        return null;
+        // Create a temp MazeCell to keep track of the current cell in the path
+        MazeCell temp = maze.getEndCell();
+
+        // While current cell isn't the beginning cell, add to path
+        while(temp != maze.getStartCell()){
+            solutionStack.add(temp);
+            temp = temp.getParent();
+        }
+
+        // Add start cell to path
+        solutionStack.add(maze.getStartCell());
+        int size = solutionStack.size();
+
+        // Reverse order from end to start, to start to end
+        for (int i = 0; i < size; i++){
+            solutionList.add(solutionStack.pop());
+        }
+
+        return solutionList;
     }
 
     /**
