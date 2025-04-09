@@ -5,6 +5,8 @@
  */
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class MazeSolver {
@@ -105,9 +107,45 @@ public class MazeSolver {
      * @return An ArrayList of MazeCells in order from the start to end cell
      */
     public ArrayList<MazeCell> solveMazeBFS() {
-        // TODO: Use BFS to solve the maze
         // Explore the cells in the order: NORTH, EAST, SOUTH, WEST
-        return null;
+        MazeCell cell = maze.getStartCell();
+        Queue<MazeCell> toVisit = new LinkedList<MazeCell>();
+
+        // Continues until it reaches the end cell
+        while (cell != maze.getEndCell()) {
+            // Makes sure the cell is valid, then add it to the Queue, setExplored to true, and
+            // set the current cell as its parent cell
+            int row = cell.getRow();
+            int col = cell.getCol();
+
+            if (maze.isValidCell(row - 1, col)) {
+                maze.getCell(row - 1, col).setExplored(true);
+                maze.getCell(row - 1, col).setParent(cell);
+                toVisit.add(maze.getCell(row - 1, col));
+            }
+
+            if (maze.isValidCell(row, col + 1)) {
+                maze.getCell(row, col + 1).setExplored(true);
+                maze.getCell(row, col + 1).setParent(cell);
+                toVisit.add(maze.getCell(row, col + 1));
+            }
+
+            if (maze.isValidCell(row + 1, col)) {
+                maze.getCell(row + 1, col).setExplored(true);
+                maze.getCell(row + 1, col).setParent(cell);
+                toVisit.add(maze.getCell(row + 1, col));
+            }
+
+            if (maze.isValidCell(row, col - 1)) {
+                maze.getCell(row, col - 1).setExplored(true);
+                maze.getCell(row, col - 1).setParent(cell);
+                toVisit.add(maze.getCell(row, col - 1));
+            }
+
+            cell = toVisit.remove();
+        }
+
+        return getSolution();
     }
 
     public static void main(String[] args) {
