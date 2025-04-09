@@ -120,7 +120,7 @@ public class MazeSolver {
             int row = cell.getRow();
             int col = cell.getCol();
 
-            // Checks all of the surrounding cells to find a valid path
+            // Checks all the surrounding cells to find a valid path
             if (maze.isValidCell(row - 1, col)) {
                 maze.getCell(row - 1, col).setExplored(true);
                 maze.getCell(row - 1, col).setParent(cell);
