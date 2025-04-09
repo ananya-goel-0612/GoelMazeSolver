@@ -4,6 +4,8 @@
  * @version 03/04/2022
  */
 
+/* MazeSolver by Ananya Goel */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

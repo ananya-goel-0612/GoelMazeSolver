@@ -4,6 +4,8 @@
  * @version 03/10/2023
  */
 
+/* MazeSolver by Ananya Goel */
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;

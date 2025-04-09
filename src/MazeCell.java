@@ -4,6 +4,8 @@
  * @version 03/10/2023
  */
 
+/* MazeSolver by Ananya Goel */
+
 public class MazeCell {
     private boolean explored;
     private boolean isWall;
